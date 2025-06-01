@@ -62,21 +62,33 @@ export default function App() {
   };
 
   return (
-    <div className="p-4 max-w-xl mx-auto">
-      <ExpenseForm onAdd={addExpense} />
-      <button
-        onClick={clearAll}
-        className="bg-red-500 text-white px-4 py-2 mt-4 rounded"
-      >
-        Clear All
-      </button>
-      <Summary expenses={expenses} />
-      <CategoryBreakdown expenses={expenses} />
-      <ExpenseList
-        expenses={expenses}
-        highlightedIndices={highlightedIndices}
-        onItemClick={handleItemClick}
-      />
+    <div>
+      <h1 className="text-[4rem] font-black font-[Times_New_Roman] text-shadow-2xs sticky top-0 bg-amber-500 w-full text-center">Expense Tracker</h1>
+      <div className="flex mt-[5rem] justify-around w-full">
+        <div className="w-[40%]  border-2 border-amber-400 rounded-[10px] p-6 shadow-2xl shadow-gray-600 ">
+        <ExpenseForm onAdd={addExpense} />
+        <button
+          onClick={clearAll}
+          className="bg-red-500 text-white px-4 py-2 mt-4 rounded"
+        >
+          Clear All
+        </button>
+        </div>
+        <div className="w-[40%] border-2 border-amber-400 rounded-[10px] p-6 shadow-2xl shadow-gray-600 ">
+        <Summary expenses={expenses} />
+        <CategoryBreakdown expenses={expenses} />
+        </div>
+      </div>
+      <div className="max-w-[80%] mx-auto mt-16">
+        <ExpenseList
+          expenses={expenses}
+          highlightedIndices={highlightedIndices}
+          onItemClick={handleItemClick}
+        />
+      </div>
+      <footer className="text-center mt-8 mb-1 text-gray-800">
+        <p>Made by Y Mani Chandra Reddy</p>
+      </footer>
     </div>
   );
 }

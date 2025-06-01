@@ -23,11 +23,8 @@ export default function ExpenseForm({ onAdd }) {
   return (
     <form
       onSubmit={handleSubmit}
-      className="mb-4 space-y-2 mt-[5rem] border-2 border-amber-400 p-[15px] min-w-[90%] rounded-[10px] mx-auto"
+      className="space-y-2 min-w-[90%]"
     >
-      <h1 className="text-2xl font-bold mb-4 text-center">
-        Expense Tracker
-      </h1>
       <input
         type="number"
         placeholder="Amount"

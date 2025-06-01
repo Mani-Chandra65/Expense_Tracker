@@ -12,11 +12,11 @@ export default function Summary({ expenses }) {
     .reduce((acc, e) => acc + e.amount, 0);
 
 return (
-    <div className="my-4 mt-[2rem]">
+    <div>
         <h2 className="text-xl font-semibold text-center mb-[10px]">Summary</h2>
         <div className="flex justify-between text-center p-4 border rounded-lg w-full">
-            <span className="mx-4">This Week: ${weekTotal.toFixed(2)}</span>
-            <span className="mx-4">This Month: ${monthTotal.toFixed(2)}</span>
+            <span className="mx-4">This Week: ₹{weekTotal.toFixed(2)}</span>
+            <span className="mx-4">This Month: ₹{monthTotal.toFixed(2)}</span>
         </div>
     </div>
 );

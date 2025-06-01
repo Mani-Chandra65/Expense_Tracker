@@ -12,7 +12,7 @@ return (
             {Object.entries(breakdown).map(([cat, amt]) => (
                 <li key={cat} className="flex justify-between py-2 text-gray-600">
                     <span className="capitalize">{cat}</span>
-                    <span className="font-medium">${amt.toFixed(2)}</span>
+                    <span className="font-medium">₹{amt.toFixed(2)}</span>
                 </li>
             ))}
         </ul>
