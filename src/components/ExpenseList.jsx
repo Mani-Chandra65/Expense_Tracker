@@ -16,7 +16,7 @@ export default function ExpenseList({ expenses, highlightedIndices, onItemClick 
                 }`
               }
             >
-              {new Date(e.date).toLocaleDateString()} - ${e.amount.toFixed(2)} ({e.category})
+              {new Date(e.date).toLocaleDateString('en-GB')} - ${e.amount.toFixed(2)} ({e.category})
             </li>
           );
         })}
