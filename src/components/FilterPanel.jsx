@@ -149,7 +149,7 @@ export default function FilterPanel({ expenses, onFilter, onReset }) {
       <div className="mt-4">
         <button
           onClick={handleReset}
-          className="bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded-md transition-colors"
+          className="bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded-md transition-colors cursor-pointer"
         >
           Reset Filters
         </button>

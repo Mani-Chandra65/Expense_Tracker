@@ -46,18 +46,7 @@ export default function DataManagement({ expenses, onImport, onClearAll }) {
       return;
     }
     
-    const confirm = window.confirm(
-      `Are you sure you want to delete all ${expenses.length} expenses? This action cannot be undone.`
-    );
-    
-    if (confirm) {
-      const doubleConfirm = window.confirm(
-        'This will permanently delete ALL your expense data. Are you absolutely sure?'
-      );
-      if (doubleConfirm) {
-        onClearAll();
-      }
-    }
+    onClearAll();
   };
 
   return (
@@ -71,7 +60,7 @@ export default function DataManagement({ expenses, onImport, onClearAll }) {
           <button
             onClick={handleExport}
             disabled={expenses.length === 0}
-            className="bg-green-600 hover:bg-green-700 disabled:bg-gray-300 disabled:cursor-not-allowed text-white px-4 py-2 rounded-md transition-colors flex items-center space-x-2"
+            className="bg-green-600 hover:bg-green-700 disabled:bg-gray-300 disabled:cursor-not-allowed text-white px-4 py-2 rounded-md transition-colors flex items-center space-x-2 cursor-pointer"
           >
             <span>📁</span>
             <span>Export to CSV</span>
@@ -108,7 +97,7 @@ export default function DataManagement({ expenses, onImport, onClearAll }) {
           <button
             onClick={handleClearAll}
             disabled={expenses.length === 0}
-            className="bg-red-600 hover:bg-red-700 disabled:bg-gray-300 disabled:cursor-not-allowed text-white px-4 py-2 rounded-md transition-colors flex items-center space-x-2"
+            className="bg-red-600 hover:bg-red-700 disabled:bg-gray-300 disabled:cursor-not-allowed text-white px-4 py-2 rounded-md transition-colors flex items-center space-x-2 cursor-pointer"
           >
             <span>🗑️</span>
             <span>Clear All Data</span>

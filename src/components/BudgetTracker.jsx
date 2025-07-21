@@ -44,7 +44,7 @@ export default function BudgetTracker({ expenses }) {
         <h2 className="text-xl font-semibold text-gray-800">Monthly Budget</h2>
         <button
           onClick={() => setShowBudgetForm(!showBudgetForm)}
-          className="text-blue-600 hover:text-blue-800 font-medium"
+          className="text-blue-600 hover:text-blue-800 font-medium cursor-pointer"
         >
           {monthlyBudget > 0 ? 'Edit Budget' : 'Set Budget'}
         </button>
@@ -64,14 +64,14 @@ export default function BudgetTracker({ expenses }) {
             />
             <button
               type="submit"
-              className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md transition-colors"
+              className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md transition-colors cursor-pointer"
             >
               Set
             </button>
             <button
               type="button"
               onClick={() => setShowBudgetForm(false)}
-              className="bg-gray-300 hover:bg-gray-400 text-gray-700 px-4 py-2 rounded-md transition-colors"
+              className="bg-gray-300 hover:bg-gray-400 text-gray-700 px-4 py-2 rounded-md transition-colors cursor-pointer"
             >
               Cancel
             </button>

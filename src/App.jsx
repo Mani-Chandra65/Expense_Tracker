@@ -7,6 +7,7 @@ import CategoryBreakdown from "./components/CategoryBreakdown";
 import BudgetTracker from "./components/BudgetTracker";
 import FilterPanel from "./components/FilterPanel";
 import DataManagement from "./components/DataManagement";
+import DeleteConfirmModal from "./components/DeleteConfirmModal";
 import { useLocalStorage } from "./hooks/useLocalStorage";
 
 export default function App() {
@@ -15,6 +16,7 @@ export default function App() {
   const [filteredExpenses, setFilteredExpenses] = useState(expenses);
   const [highlightedIndices, setHighlightedIndices] = useState([]);
   const [activeTab, setActiveTab] = useState('dashboard');
+  const [deleteModal, setDeleteModal] = useState({ isOpen: false, type: '', index: null });
 
   // Update filtered expenses when expenses change
   useEffect(() => {
@@ -40,23 +42,30 @@ export default function App() {
   };
 
   const clearAll = () => {
-    setExpenses([]);
-    setHighlightedIndices([]);
-    setFilteredExpenses([]);
+    setDeleteModal({
+      isOpen: true,
+      type: 'clearAll',
+      index: null
+    });
+  };
+
+  const handleDeleteConfirm = () => {
+    if (deleteModal.type === 'clearAll') {
+      setExpenses([]);
+      setHighlightedIndices([]);
+      setFilteredExpenses([]);
+    } else if (deleteModal.type === 'expense' && deleteModal.index !== null) {
+      setExpenses(prev => prev.filter((_, i) => i !== deleteModal.index));
+      setHighlightedIndices(prev => prev.filter(i => i !== deleteModal.index));
+    }
   };
 
   const handleItemClick = (index) => {
-    const shouldDelete = window.confirm(
-      "Delete this expense? OK = delete, Cancel = highlight"
-    );
-    if (shouldDelete) {
-      setExpenses(prev => prev.filter((_, i) => i !== index));
-      setHighlightedIndices(prev => prev.filter(i => i !== index));
-    } else {
-      setHighlightedIndices(prev =>
-        prev.includes(index) ? prev.filter(i => i !== index) : [...prev, index]
-      );
-    }
+    setDeleteModal({
+      isOpen: true,
+      type: 'expense',
+      index: index
+    });
   };
 
   const handleFilter = (filtered) => {
@@ -96,7 +105,7 @@ export default function App() {
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
-                className={`py-4 px-1 border-b-2 font-medium text-sm transition-colors ${
+                className={`py-4 px-1 border-b-2 font-medium text-sm transition-colors cursor-pointer ${
                   activeTab === tab.id
                     ? 'border-blue-500 text-blue-600'
                     : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'
@@ -201,6 +210,20 @@ export default function App() {
           </div>
         </div>
       </footer>
+
+      {/* Delete Confirmation Modal */}
+      <DeleteConfirmModal
+        isOpen={deleteModal.isOpen}
+        onClose={() => setDeleteModal({ isOpen: false, type: '', index: null })}
+        onConfirm={handleDeleteConfirm}
+        title={deleteModal.type === 'clearAll' ? 'Clear All Expenses' : 'Delete Expense'}
+        message={
+          deleteModal.type === 'clearAll' 
+            ? `Are you sure you want to delete all ${expenses.length} expenses? This will permanently remove all your expense data.`
+            : 'Are you sure you want to delete this expense? This action cannot be undone.'
+        }
+        type={deleteModal.type}
+      />
     </div>
   );
 }

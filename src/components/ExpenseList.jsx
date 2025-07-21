@@ -63,7 +63,7 @@ export default function ExpenseList({ expenses, highlightedIndices, onItemClick,
                         e.stopPropagation();
                         onEdit(index);
                       }}
-                      className="text-blue-600 hover:text-blue-800 p-1 rounded transition-colors"
+                      className="text-blue-600 hover:text-blue-800 p-1 rounded transition-colors cursor-pointer"
                       title="Edit expense"
                     >
                       ✏️
@@ -75,7 +75,7 @@ export default function ExpenseList({ expenses, highlightedIndices, onItemClick,
                         e.stopPropagation();
                         onDelete(index);
                       }}
-                      className="text-red-600 hover:text-red-800 p-1 rounded transition-colors"
+                      className="text-red-600 hover:text-red-800 p-1 rounded transition-colors cursor-pointer"
                       title="Delete expense"
                     >
                       🗑️
